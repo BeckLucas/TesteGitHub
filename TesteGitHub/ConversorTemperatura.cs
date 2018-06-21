@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TesteGitHub
 {
-    public class Class1
+    public class ConversorTemperatura
     {
+        int varial = 0;
     }
 }
