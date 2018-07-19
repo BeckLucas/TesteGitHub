@@ -9,6 +9,6 @@ namespace TesteGitHub
     public class ConversorTemperatura
     {
         int varial = 0;
-        int variavel2 = 1;
+        int variavel2 = 1 /;
     }
 }
