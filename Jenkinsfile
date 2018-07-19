@@ -6,6 +6,7 @@ pipeline{
     }
 	
     stages{
+	
         stage('Build'){
             steps {
                 echo 'Building..'
@@ -20,11 +21,21 @@ pipeline{
                 }                
             }   
         }
+		
         stage('Teste'){
             steps{
-                echo 'Test...'
+                echo 'Testing...'
             }   
         }
+		
+		stage('Confirmação Deploy'){
+			steps{
+				timeout(time:1, unit:'HOURS') {
+                    input message:'Continuar com o Deploy?'
+                }     
+			}
+		}
+		
         stage('Deploy'){
             steps{
 				echo 'Deploy...'
