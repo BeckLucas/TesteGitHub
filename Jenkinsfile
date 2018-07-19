@@ -11,7 +11,7 @@ pipeline{
                     }
                     catch (error) {
                         currentBuild.result = 'FAILURE'
-						return
+						error("Ocorreu um erro no build!")
                     }                 
                 }                
             }   
