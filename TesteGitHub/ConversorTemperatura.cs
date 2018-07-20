@@ -13,7 +13,7 @@ namespace TesteGitHub
 
         public ConversorTemperatura()
         {
-            this.Campo1 = ;
+            this.Campo1 = 1;
             this.Campo2 = 1;
         }
 
