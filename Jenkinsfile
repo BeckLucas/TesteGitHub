@@ -55,15 +55,15 @@ pipeline{
 	
 	post {
 		success {
-			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.beck@cwi.com.br'
+			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
 		}
 		
 		aborted {
-			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.beck@cwi.com.br'
+			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
 		}
 		
 		failure {
-			emailext body: 'FAILED: Job JOBNAME by AUTORNAME', subject: 'Build and Publish FAILED', to: 'lucas.beck@cwi.com.br'
+			emailext body: 'FAILED: Job JOBNAME by AUTORNAME', subject: 'Build and Publish FAILED', to: 'lucas.bona.beck@gmail.com'
 		}
 	}    
 }
