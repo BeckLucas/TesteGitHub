@@ -28,6 +28,8 @@ pipeline{
 			}
             steps{
                 echo 'Testing...'
+				bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MsBuild.exe" "C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubTests\\TesteGitHubTests.csproj" /p:Configuration=Release /p:BuildEnviroment=TesteGitHubTests'
+				bat 'call "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\MSTest.exe" /testcontainer:"C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubTests\\bin\\Release\\TesteGitHubTests.dll" /nologo'
             }   
         }
 		
