@@ -18,7 +18,7 @@ namespace TesteGitHubTests
         public void TestMethodError()
         {
             ConversorTemperatura t2 = new ConversorTemperatura();
-            Assert.AreEqual(t2.Soma(), 3);
+            Assert.AreEqual(t2.Soma(), 2);
         }
     }
 }
