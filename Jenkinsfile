@@ -1,11 +1,6 @@
 pipeline{
     agent any
 	
-	enviroment {
-		VERSION_NUMBER = "1.0.${env.BUILD_ID}"
-		AUTHOR_NAME = bat(script: "git show -s --format='%%an' HEAD", returnStdout: true).split('\r\n')[2].trim().replace("'","")
-	}
-
 	options{
             buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5'))
     }
