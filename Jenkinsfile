@@ -60,15 +60,15 @@ pipeline{
 	
 	post {
 		success {
-			emailext body: 'SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}: ${env.RUN_DISPLAY_URL}, recipientProviders: [developers()], subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.beck@cwi.com.br'
 		}
 		
 		aborted {
-			emailext body: 'SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}: ${env.RUN_DISPLAY_URL}, recipientProviders: [developers()], subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.beck@cwi.com.br'
 		}
 		
 		failure {
-			emailext body: 'FAILED: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}: ${env.RUN_DISPLAY_URL}, recipientProviders: [developers()], subject: 'Build and Publish FAILED', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'FAILED: Job JOBNAME by AUTORNAME', subject: 'Build and Publish FAILED', to: 'lucas.beck@cwi.com.br'
 		}
 	}    
 }
