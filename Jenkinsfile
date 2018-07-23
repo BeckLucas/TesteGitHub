@@ -22,7 +22,7 @@ pipeline{
             }   
         }
 		
-        stage('Test'){
+        stage('Unit Tests'){
 			when {
 				expression {env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop'}
 			}
