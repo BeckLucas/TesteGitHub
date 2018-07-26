@@ -1,6 +1,6 @@
 pipeline{
     agent any
-	
+		
 	environment {
 		VERSION_NUMBER = "1.0.${env.BUILD_ID}"
 		AUTHOR_NAME = bat(script: "git show -s --format='%%an' HEAD", returnStdout: true).split('\r\n')[2].trim().replace("'","")
@@ -14,7 +14,7 @@ pipeline{
 	
         stage('Build'){
             steps {
-                echo 'Building..'
+                echo 'Building...'
                 script{
                     try{
                         bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MsBuild.exe" "C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubWF\\TesteGitHubWF.csproj" /p:Configuration=Release /p:BuildEnviroment=TesteGitHub'                
@@ -62,7 +62,7 @@ pipeline{
 	
 	post {
 		success {
-			emailext body: 'SUCCESSFUL: Job \'${env.JOB_NAME}\' by \'@${env.AUTHOR_NAME}\'', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'SUCCESSFUL: Job \'${env.JOB_NAME}\' by \'@${env.AUTHOR_NAME}\'', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'			
 		}
 		
 		aborted {
