@@ -1,6 +1,11 @@
 pipeline{
     agent any
 	
+	environment {
+		VERSION_NUMBER = "1.0.${env.BUILD_ID}"
+		AUTHOR_NAME = bat(script: "git show -s --format='%%an' HEAD", returnStdout: true).split('\r\n')[2].trim().replace("'","")
+	}
+	
 	options{
             buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5'))
     }
@@ -57,15 +62,15 @@ pipeline{
 	
 	post {
 		success {
-			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'SUCCESSFUL: Job ${env.JOB_NAME} by @${env.AUTHOR_NAME}', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
 		}
 		
 		aborted {
-			emailext body: 'SUCCESSFUL: Job JOBNAME by AUTORNAME', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'SUCCESSFUL: Job ${env.JOB_NAME} by @${env.AUTHOR_NAME}', subject: 'Build and Publish SUCCESSFUL', to: 'lucas.bona.beck@gmail.com'
 		}
 		
 		failure {
-			emailext body: 'FAILED: Job JOBNAME by AUTORNAME', subject: 'Build and Publish FAILED', to: 'lucas.bona.beck@gmail.com'
+			emailext body: 'FAILED: Job ${env.JOB_NAME} by @${env.AUTHOR_NAME}', subject: 'Build and Publish FAILED', to: 'lucas.bona.beck@gmail.com'
 		}
 	}    
 }
