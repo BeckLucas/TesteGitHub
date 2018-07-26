@@ -44,7 +44,7 @@ pipeline{
 			}
 			steps{
 				timeout(time:1, unit:'HOURS') {
-                    input message:'Continuar com o Deploy?'
+                    input message:'Continuar com o Deploy ?'
                 }     
 			}
 		}
