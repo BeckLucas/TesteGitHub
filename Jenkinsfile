@@ -62,15 +62,15 @@ pipeline{
 	
 	post {
 		success {
-			emailext body: "SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}: ${env.RUN_DISPLAY_URL}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'			
+			emailext body: "SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'			
 		}
 		
 		aborted {
-			emailext body: "SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}: ${env.RUN_DISPLAY_URL}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'
+			emailext body: "SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'
 		}
 		
 		failure {
-			emailext body: "FAILED: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}: ${env.RUN_DISPLAY_URL}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'
+			emailext body: "FAILED: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'
 		}
 	}    
 }
