@@ -17,6 +17,11 @@ namespace TesteGitHub
             this.Campo2 = 1;
         }
 
+        public bool isFunction()
+        {
+            return true;
+        }
+
         public int Soma()
         {
             return this.Campo1 + this.Campo2;
