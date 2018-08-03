@@ -13,7 +13,7 @@ namespace TesteGitHub
 			return a + b;
 		}
 		
-		public int Soma()
+		public int Soma(int a, int b, int c)
 		{
 			return 30;
 		}
