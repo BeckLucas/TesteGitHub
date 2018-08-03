@@ -12,5 +12,10 @@ namespace TesteGitHub
         {
             return true;
         }
+
+        public bool isFunction2()
+        {
+            return false;
+        }
     }
 }
