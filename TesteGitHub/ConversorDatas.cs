@@ -25,12 +25,7 @@ namespace TesteGitHub
 
         public bool isFunction2()
         {
-            int a = 1;
-            int b = 2;
-
-            int soma = a + b;
-
-            return (soma == 2);
+            return (1 == 2);
         }
     }
 }
