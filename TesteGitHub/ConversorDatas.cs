@@ -25,7 +25,7 @@ namespace TesteGitHub
 
         public bool isFunction2()
         {
-            return false;
+            return (1 == 2);
         }
     }
 }
