@@ -17,7 +17,7 @@ pipeline{
                 echo 'Building...'
                 script{
                     try{
-                        bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MsBuild.exe" "C:\\Portocred\\BitBucket\\portosis\\Portosis\\Portosis\\PortosisFinanceito.sln" /t:Clean,Rebuild /p:Configuration=Debug'
+                        bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MsBuild.exe" "C:\\Portocred\\BitBucket\\portosis\\Portosis\\Portosis\\PortosisFinanceiro.sln" /t:Clean,Rebuild /p:Configuration=Debug'
                     }
                     catch (error) {
                         currentBuild.result = 'FAILURE'
