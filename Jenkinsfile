@@ -7,17 +7,25 @@ pipeline{
 	}
 	
 	options{
-            buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5'))
+            buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '10', daysToKeepStr: '', numToKeepStr: '10'))
     }
 	
     stages{
+	
+		stage('Checkout') {
+			steps {
+				
+				echo 'Checkout...'
+							
+			}
+		}
 	
         stage('Build'){
             steps {
                 echo 'Building...'
                 script{
                     try{
-                        bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MsBuild.exe" "C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubWF\\TesteGitHubWF.csproj" /p:Configuration=Release /p:BuildEnviroment=TesteGitHub'                
+                        bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" "C:\\Portocred\\Git\\portosis\\Portosis\\PSFinanceiro.csproj" /t:Clean,Rebuild /p:Configuration=Release'
                     }
                     catch (error) {
                         currentBuild.result = 'FAILURE'
@@ -25,54 +33,31 @@ pipeline{
                     }                 
                 }                
             }   
-        }
-		
-        stage('Unit Tests'){
-			when {
-				expression {env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop'}
-			}
-            steps{
-                echo 'Testing...'
-				bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MsBuild.exe" "C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubTests\\TesteGitHubTests.csproj" /p:Configuration=Release /p:BuildEnviroment=TesteGitHubTests'
-				bat 'call "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\MSTest.exe" /testcontainer:"C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubTests\\bin\\Release\\TesteGitHubTests.dll" /nologo'
-            }   
-        }
-		
-		stage('Confirm Deploy'){
-			when {
-				expression {env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop'}
-			}
-			steps{
-				timeout(time:1, unit:'HOURS') {
-                    input message:'Continuar com o Deploy ?'
-                }     
-			}
-		}
-		
+        }       
+			
         stage('Deploy'){
-			when {
-				expression {env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop'}
-			}
             steps{
 				echo 'Deploy...'
-				bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" /t:publish "C:\\Users\\lucas.beck\\Documents\\Visual Studio 2015\\Projects\\TesteGitHub\\TesteGitHub\\TesteGitHubWF\\TesteGitHubWF.csproj" /p:Configuration=Release /p:BuildEnvironment=TesteGitHubWF'
+				bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" /t:publish "C:\\Portocred\\Git\\portosis\\Portosis\\PSFinanceiro.csproj" /p:Configuration=Release /p:BuildEnvironment=PSFinanceiro'
             }   
         }
     }
 	
 	post {
+		always {
+			echo 'Limpando diretórios do workspace'
+		}
+	
 		success {
-			emailext body: "SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'			
+			echo 'Sucesso...'
 		}
 		
 		aborted {
-			emailext body: "SUCCESSFUL: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'
+			echo 'Abortado...'
 		}
 		
 		failure {
-			emailext body: "FAILED: Job '${env.JOB_NAME}' by @${env.AUTHOR_NAME} #${env.BUILD_NUMBER}. Check console output at $BUILD_URL to view the results.", subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'lucas.bona.beck@gmail.com'
+			echo 'Erro...'			
 		}
 	}    
 }
-
-
