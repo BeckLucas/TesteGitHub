@@ -25,7 +25,7 @@ pipeline{
                 echo 'Building...'
                 script{
                     try{
-                        bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" "C:\\Portocred\\Git\\portosis\\Portosis\\PSFinanceiro.csproj" /t:Clean,Rebuild /p:Configuration=Release'
+                        bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" "C:\\Portocred\\Git\\portosis\\Portosis\\PSFinanceiro\\PSFinanceiro.csproj" /t:Clean,Rebuild /p:Configuration=Release'
                     }
                     catch (error) {
                         currentBuild.result = 'FAILURE'
@@ -38,7 +38,7 @@ pipeline{
         stage('Deploy'){
             steps{
 				echo 'Deploy...'
-				bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" /t:publish "C:\\Portocred\\Git\\portosis\\Portosis\\PSFinanceiro.csproj" /p:Configuration=Release /p:BuildEnvironment=PSFinanceiro'
+				bat 'call "C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" /t:publish "C:\\Portocred\\Git\\portosis\\Portosis\\PSFinanceiro\\PSFinanceiro.csproj" /p:Configuration=Release /p:BuildEnvironment=PSFinanceiro'
             }   
         }
     }
